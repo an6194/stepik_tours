@@ -1,5 +1,7 @@
 import random
 from math import inf
+
+from django.http import Http404
 from django.shortcuts import render
 from django.views import View
 import mock_data as data
@@ -24,6 +26,8 @@ class MainView(View):
 class DepartureView(View):
 
     def get(self, request, departure, *args, **kwargs):
+        if departure not in data.departures:
+            raise Http404
         tours_filtered = dict()
         tour_count = 0
         price_min = inf
@@ -58,6 +62,8 @@ class DepartureView(View):
 class TourView(View):
 
     def get(self, request, tour_id, *args, **kwargs):
+        if tour_id not in data.tours:
+            raise Http404
         tour = data.tours[tour_id]
         departure = data.departures[tour['departure']]
         stars = int(tour['stars']) * '★'
