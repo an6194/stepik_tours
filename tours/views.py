@@ -18,8 +18,7 @@ class MainView(View):
             'tours_sample': tours_sample,
             'title': data.title,
             'subtitle': data.subtitle,
-            'description': data.description,
-            'departures': data.departures
+            'description': data.description
         })
 
 
@@ -54,8 +53,7 @@ class DepartureView(View):
             'price_min': price_min,
             'price_max': price_max,
             'nights_min': nights_min,
-            'nights_max': nights_max,
-            'departures': data.departures
+            'nights_max': nights_max
         })
 
 
@@ -70,8 +68,7 @@ class TourView(View):
         return render(request, 'tour.html', context={
             'tour': tour,
             'departure': departure,
-            'stars': stars,
-            'departures': data.departures
+            'stars': stars
         })
 
 
