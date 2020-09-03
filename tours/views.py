@@ -31,9 +31,9 @@ class DepartureView(View):
         tours_filtered = dict()
         tour_count = 0
         price_min = inf
-        price_max = 0
+        price_max = -inf
         nights_min = inf
-        nights_max = 0
+        nights_max = -inf
         for tour_id, tour_data in data.tours.items():
             if tour_data['departure'] == departure:
                 tours_filtered[tour_id] = tour_data

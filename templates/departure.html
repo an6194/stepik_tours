@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ departure|capfirst }}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="container mt-3">
+{% block title %}{{ departure|capfirst }}{% endblock title %}
 
-    {% include 'base.html' %}
-
+{% block content %}
     <h1 class="display-5 mt-4">Летим <span data-test="from">{{ departure }}</span></h1>
     <p class="mb-4" >Найдено <span data-test="tourcount">{{ tour_count }}</span> туров, от <span data-test="pricemin">{{ price_min }}₽</span> до <span data-test="pricemax">{{ price_max }}₽</span> и от <span data-test="nightsmin">{{ nights_min }}</span> ночей до <span data-test="nightsmax">{{ nights_max }}</span> ночей</p>
     <!-- HERO -->
@@ -35,8 +27,4 @@
         {% endfor %}
 
       </div>
-
-</div>
-
-</body>
-</html>
+{% endblock content %}
