@@ -11,11 +11,11 @@ class MainView(View):
 
     def get(self, request, *args, **kwargs):
         tours_sample = random.sample(list(data.tours), 6)
-        tours_sample = dict.fromkeys(tours_sample)
-        for tour_id in tours_sample:
-            tours_sample[tour_id] = data.tours[tour_id]
+        tours_collection = dict.fromkeys(tours_sample)
+        for tour_id in tours_collection:
+            tours_collection[tour_id] = data.tours[tour_id]
         return render(request, 'index.html', context={
-            'tours_sample': tours_sample,
+            'tours_collection': tours_collection,
             'title': data.title,
             'subtitle': data.subtitle,
             'description': data.description
@@ -27,7 +27,7 @@ class DepartureView(View):
     def get(self, request, departure, *args, **kwargs):
         if departure not in data.departures:
             raise Http404
-        tours_filtered = dict()
+        tours_collection = dict()
         tour_count = 0
         price_min = inf
         price_max = -inf
@@ -35,7 +35,7 @@ class DepartureView(View):
         nights_max = -inf
         for tour_id, tour_data in data.tours.items():
             if tour_data['departure'] == departure:
-                tours_filtered[tour_id] = tour_data
+                tours_collection[tour_id] = tour_data
                 tour_count += 1
                 if tour_data['price'] < price_min:
                     price_min = tour_data['price']
@@ -47,7 +47,7 @@ class DepartureView(View):
                     nights_max = tour_data['nights']
         departure = data.departures[departure]
         return render(request, 'departure.html', context={
-            'tours_filtered': tours_filtered,
+            'tours_collection': tours_collection,
             'departure': departure,
             'tour_count': tour_count,
             'price_min': price_min,

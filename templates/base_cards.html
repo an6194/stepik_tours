@@ -1,0 +1,14 @@
+<div class="row mt-5" data-test="cards">
+{% for tour_id, tour_data in tours_collection.items %}
+  <div class="col-4" data-test="card">
+    <div class="card mb-3" >
+      <img src="{{ tour_data.picture }}" class="card-img-top img-fluid" data-test="picture" alt="">
+      <div class="card-body">
+        <h5 class="card-title">{{ tour_data.title }}</h5>
+        <p class="card-text">{{ tour_data.description|truncatechars:135 }}</p>
+        <a href="{% url 'tour_view' tour_id %}" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
