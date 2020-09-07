@@ -1,9 +1,10 @@
 import random
 from math import inf
 
-from django.http import Http404, HttpResponseNotFound
+from django.http import Http404, HttpResponseNotFound, HttpResponseServerError
 from django.shortcuts import render
 from django.views import View
+
 import mock_data as data
 
 
@@ -77,4 +78,4 @@ def custom_handler404(request, exception):
 
 
 def custom_handler500(request):
-    return HttpResponseNotFound('О нет! Всё сломалось!')
+    return HttpResponseServerError('О нет! Всё сломалось!')
